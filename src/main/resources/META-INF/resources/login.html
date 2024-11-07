@@ -31,14 +31,7 @@
     </div>
 </div>
 
-<!-- Importar Amplify y configuración -->
-<script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.19/dist/aws-amplify.min.js"></script>
-<script src="aws-exports.js"></script>
 <script>
-    // Configurar Amplify
-    const { Amplify, Auth } = window.aws_amplify;
-    Amplify.configure(window.awsConfig);
-
     const signInForm = document.getElementById('signInForm');
     const signUpForm = document.getElementById('signUpForm');
     const loginMessage = document.getElementById('loginMessage');
@@ -59,17 +52,16 @@
         const username = document.getElementById('loginUsername').value;
         const password = document.getElementById('loginPassword').value;
 
+        // Implement login logic here
         try {
-            const user = await Auth.signIn(username, password);
-            console.log('Login successful!', user);
-
-            // Almacenar el token en sessionStorage
-            sessionStorage.setItem('token', user.signInUserSession.idToken.jwtToken);
-            sessionStorage.setItem('username', user.username);
-
-            loginMessage.textContent = 'Login successful!';
-            loginMessage.style.color = 'green';
-            window.location.href = 'index.html';
+            // Example placeholder logic
+            if (username === 'test' && password === 'password') {
+                loginMessage.textContent = 'Login successful!';
+                loginMessage.style.color = 'green';
+                window.location.href = 'index.html';
+            } else {
+                throw new Error('Invalid username or password');
+            }
         } catch (error) {
             console.error('Error:', error);
             loginMessage.textContent = 'Invalid username or password';
@@ -83,18 +75,15 @@
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
 
+        // Implement registration logic here
         try {
-            const { user } = await Auth.signUp({
-                username,
-                password,
-                attributes: {
-                    email
-                }
-            });
-            console.log('Registration successful!', user);
-
-            signupMessage.textContent = 'Registration successful!';
-            signupMessage.style.color = 'green';
+            // Example placeholder logic
+            if (username && email && password) {
+                signupMessage.textContent = 'Registration successful!';
+                signupMessage.style.color = 'green';
+            } else {
+                throw new Error('Registration failed');
+            }
         } catch (error) {
             console.error('Error:', error);
             signupMessage.textContent = 'Registration failed';
