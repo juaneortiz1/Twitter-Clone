@@ -102,4 +102,10 @@ public class UserService {
         dto.email = user.getEmail();
         return dto;
     }
+
+    public UserDTO getUserByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .map(this::mapToDTO)
+                .orElseThrow(() -> new WebApplicationException("User not found", 404));
+    }
 }

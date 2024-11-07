@@ -27,4 +27,9 @@ public class StreamController {
     public Response getStream(@PathParam("streamId") Long streamId) {
         return Response.ok(streamService.getStream(streamId)).build();
     }
+
+    @GET
+    public Response getAllStreams() {
+        return Response.ok(streamService.getAllStreams()).build();
+    }
 }
