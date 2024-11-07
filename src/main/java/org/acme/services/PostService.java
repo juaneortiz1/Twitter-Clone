@@ -70,4 +70,18 @@ public class PostService {
         dto.timestamp = post.getTimestamp();
         return dto;
     }
+
+    public PostDTO getPost(Long id) {
+        Post post = postRepository.findById(id);
+        if (post == null) {
+            throw new WebApplicationException("Post not found", Response.Status.NOT_FOUND);
+        }
+        return mapToDTO(post);
+    }
+
+    public Object getAllPosts() {
+        return postRepository.listAll().stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
 }
