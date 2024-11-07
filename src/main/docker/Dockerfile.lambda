@@ -1,0 +1,5 @@
+FROM public.ecr.aws/lambda/java:17
+
+COPY target/*-runner.jar /function.jar
+
+CMD ["org.acme.LambdaHandler::handleRequest"]
